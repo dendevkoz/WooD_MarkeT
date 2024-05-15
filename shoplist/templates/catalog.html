@@ -1,0 +1,64 @@
+
+        {%  extends 'base_product.html' %}
+        {% block content %}
+        {% load static %}
+
+        <div class="imgline">
+            <div class="bloggroup">
+                <img src="{% static 'shoplist/img/shopgroup.png' %}">
+                <div class="homeblog">
+                    <b>Home</b>
+                    <img src="{% static 'shoplist/img/arrowblog.png' %}">
+                    <span>Shop</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="filter">
+        <div>
+            {% if categories %}
+                {% for caty in categories %}
+                    <a href="/shoplist/cat/{{ caty.id }}/">{{ caty.category_name }}</a>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </section>
+
+
+    <section>
+            {% if products %}
+                <div class="products">
+                {% for product in products %}
+                    <div class="one_product">
+                        <div class="img_product">
+
+                            <img src="/media/{{ product.title_img }}">
+
+                        </div>
+                            <a href="/shoplist/{{ product.id }}/">{{ product.product_name }}</a>
+                            <p>Rs: {{ product.product_price}}<a href="/shoplist/{{ product.id }}/"></a></p>
+                    </div>
+                {% endfor %}
+                </div>
+            {% else %}
+                <p>No product are available.</p>
+            {% endif %}
+    </section>
+
+
+    <section class="pre_footer">
+            <div>
+                <b>Free Delivery</b>
+                <p>For all oders over $50, consectetur<br> adipim scing elit.</p>
+            </div>
+            <div>
+                <b>90 Days Return</b>
+                <p>If goods have problems, consectetur<br> adipim scing elit.</p>
+            </div>
+            <div>
+                <b>Secure Payment</b>
+                <p>100% secure payment, consectetur<br> adipim scing elit.</p>
+            </div>
+        </section>
+        {% endblock %}

@@ -1,0 +1,81 @@
+
+            {%  extends 'base.html' %}
+            {% block content %}
+            {% load static %}
+
+            <div class="imgline">
+                <div class="bloggroup">
+                    <img src="{% static 'blog/img/contactgroup.png' %}">
+                    <div class="homeblog">
+                        <b>Home</b>
+                        <img src="{% static 'blog/img/arrowblog.png' %}">
+                        <span>Contact</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="contact">
+            <div class="contact_up">
+                <b>Get In Touch With Us</b>
+                <span>For More Information About Our Product & Services. Please Feel Free To Drop Us An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!</span>
+            </div>
+            <div class="contact_all_side">
+                <div class="contact_left">
+                    <div class="contact_info">
+                        <img src="{% static 'blog/img/contactaddress.png' %}">
+                        <b>Address</b>
+                        <p>
+                            236 5th SE Avenue, New York NY10000, United States
+                        </p>
+                    </div>
+                    <div class="contact_info">
+                        <img src="{% static 'blog/img/contactphone.png' %}">
+                        <b>Phone</b>
+                        <p>
+                            Mobile: +(84) 546-6789 Hotline: +(84) 456-6789
+                        </p>
+                    </div>
+                    <div class="contact_info">
+                        <img src="{% static 'blog/img/contactworktime.png' %}">
+                        <b>Working Time</b>
+                        <p>
+                            Monday-Friday: 9:00 - 22:00<br> Saturday-Sunday: 9:00 - 21:00
+                        </p>
+                    </div>
+                </div>
+                <div class="contact_right">
+                    <form action="{% url 'get_name' %}" method="post" class="info_you" >
+                        {% csrf_token %}
+                  {% for field in form %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        <label>
+                            {{ field.label_tag }}
+                        </label>
+                       <div>
+                           {{ field }}
+                       </div>
+                    </div>
+                {% endfor %}
+                    <input class="button" type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="pre_footer">
+            <div>
+                <b>Free Delivery</b>
+                <p>For all oders over $50, consectetur<br> adipim scing elit.</p>
+            </div>
+            <div>
+                <b>90 Days Return</b>
+                <p>If goods have problems, consectetur<br> adipim scing elit.</p>
+            </div>
+            <div>
+                <b>Secure Payment</b>
+                <p>100% secure payment, consectetur<br> adipim scing elit.</p>
+            </div>
+        </section>
+        {% endblock %}

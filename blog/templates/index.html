@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'blog/css/shop.css' %}">
+
+</head>
+<body>
+        <header>
+            <div class="first_line">
+                <div class="menu">
+                    <b class="home">Home</b>
+                    <b>Shop</b>
+                    <b>About</b>
+                    <b>Contact</b>
+                </div>
+                <div class="sections">
+                    <img src="{% static 'blog/img/account.png' %}" class="account">
+                    <img src="{% static 'blog/img/search.png' %}">
+                    <img src="{% static 'blog/img/heart.png' %}">
+                    <img src="{% static 'blog/img/shopping.png' %}">
+                </div>
+            </div>
+            <div class="imgline">
+                <div class="bloggroup">
+                    <img src="{% static 'blog/img/bloggroup.png' %}">
+                    <div class="homeblog">
+                        <b>Home</b>
+                        <img src="{% static 'blog/img/arrowblog.png' %}">
+                        <span>Blog</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section>
+            <div class="left_side">
+            {% if articles %}
+                <div>
+
+                {% for article in articles %}
+
+                    <img src="/media/{{article.upload}}">
+                    <h1><a href="/blog/{{ article.id }}/">{{ article.articles_name }}</a></h1>
+                    <p>{{ article.articles_text}}<a href="/blog/{{ article.id }}/"></a></p>
+                {% endfor %}
+            {% else %}
+                <p>No articles are available.</p>
+            {% endif %}
+                </div>
+            </div>
+            <div class="right_side">
+                <div>
+                    <div class="search">
+                        <form action="" method="post" class="" >
+                          <input type="text" placeholder=" " name="search">
+                          <button type="submit"><img src="{% static 'blog/img/search.png' %}"></button>
+                        </form>
+                    </div>
+                    <div class="categories">
+                        <h1>Categories</h1>
+                        <div class="categories_menu">
+                            {% for key, value in dict_cat.items %}
+                            <div class="key">
+                                <a href="/blog/cat/{{ key.id }}">{{key}}</a>
+                                <p>{{value}}</p>
+                            </div>
+                            {% endfor %}
+                    </div>
+                </div>
+                <div class="recent_post categories">
+                    <h1>Recent Posts</h1>
+                        {% if recents_post %}
+                        {% for post in recents_post %}
+                        <div class="recent_menu">
+                            <img src="/media/{{post.upload}}">
+                        <div class="recent_menu_text">
+                            <a href="/blog/{{ post.id }}/">{{post.articles_name}}</a>
+                            <p>{{post.pub_date}}</p>
+                        </div>
+                        </div>
+                        {% endfor %}
+                            {% else %}
+                                <p>No category are available.</p>
+                            {% endif %}
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+</body>
+</html>
